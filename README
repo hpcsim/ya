@@ -1,0 +1,91 @@
+General Software Requirements:
+==============================
+For all platforms the following libraries (along with their devel files)
+are required:
+
+ - Boost => 1.42.0 
+
+Optional programs/libraries:
+
+ none
+
+Furthermore, a recent C++ Compiler and CMake are required:
+ - g++ => 4.4.5
+ - cmake => 2.8
+
+Required Debian / Ubuntu development packages:
+==============================================
+Building Task from source code requires several development packages of
+commonly used libraries:
+
+"apt-get install" these development packages:
+
+ - libboost-all-dev
+
+building tools:
+
+ - cmake
+ - build-essentials (Debian)
+
+Assertions, Stack Traces, Automatic Debugging, Anti Debugging
+=============================================================
+The use of assertions, the printing of stack traces, and automatic invocation
+of the debugging in case of an error is controlled 
+Cmake variables CMAKE_BUILD_TYPE:
+
+for debug (default) run from project directory:
+cmake -DCMAKE_BUILD_TYPE=Debug .
+
+for release run from project directory:
+cmake -DCMAKE_BUILD_TYPE=Release .
+
+To show compilation commands you can set variable CMAKE_VERBOSE_MAKEFILE to 1: 
+-DCMAKE_VERBOSE_MAKEFILE=1
+
+
+Automation scripts
+=============================================================
+
+ - Multiple program launch
+	/test.sh $1 $2 $3 $4
+
+	$1 - number of runs
+	$2 - directory to ya-task executable
+	$3 - path to parsing directory
+	$4 - number of threads
+	
+	example:
+	./test.sh 3 ./bin/ examples/ 3
+
+	runs "3" times "./bin/yandex-task" with parsing directory "examples" using "3" slave threads
+
+ - gdb automation
+	gdbautomation script contain commands for gdb to launch yandex-task in infinit loop till 
+	unhandled exception or signal from OS (like sigmentation fault). Before usage path_to_yandex_directory
+	should be changed to the correct path, also if the Task.cc was modified put line number to the
+	"return EXIT_SUCCESS".
+	
+	example:
+	gdb -x gdbautomation --args ./bin/yandex-task -i examples/ -t 3
+
+ - Clear CMake files (except CMakeLists.txt) and Makefile 
+	./clear.sh  
+
+Tested
+=============================================================
+
+Linux debian 2.6.32-5-amd64 x86_64 GNU/Linux
+	g++ (Debian 4.4.5-8) 4.4.5
+	cmake version 2.8.10.2
+	Version: 1.42.0.1
+
+Linux vm-VirtualBox 3.5.0-34-generic #55~precise1-Ubuntu x86_64 x86_64 GNU/Linux
+	g++ (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+	cmake version 2.8.7
+	Version: 1.48.0.2
+
+Linux vm-VirtualBox 3.5.0-34-generic #55~precise1-Ubuntu x86_64 GNU/Linux
+	g++ (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+	cmake version 2.8.1
+	Version: 1.40.0.1
+

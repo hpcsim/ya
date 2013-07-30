@@ -1,0 +1,8 @@
+break path_to_yandex_directory/src/bin/Task.cc:164
+set confirm off
+commands
+kill
+run
+end
+run
+
