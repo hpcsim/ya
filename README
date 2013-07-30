@@ -13,6 +13,7 @@ Furthermore, a recent C++ Compiler and CMake are required:
  - g++ => 4.4.5
  - cmake => 2.8
 
+
 Required Debian / Ubuntu development packages:
 ==============================================
 Building Task from source code requires several development packages of
@@ -26,6 +27,7 @@ building tools:
 
  - cmake
  - build-essentials (Debian)
+
 
 Assertions, Stack Traces, Automatic Debugging, Anti Debugging
 =============================================================
@@ -70,6 +72,7 @@ Automation scripts
 
  - Clear CMake files (except CMakeLists.txt) and Makefile 
 	./clear.sh  
+
 
 Tested
 =============================================================
